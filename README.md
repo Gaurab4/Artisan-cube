@@ -1,6 +1,6 @@
-# CreativHub
+# ArtisanClub
 
-CreativHub is a comprehensive project management and collaboration platform designed specifically for creative professionals, such as designers, writers, and developers. It provides a suite of tools and features to streamline workflows, enhance communication, and facilitate collaboration among remote teams.
+ArtisanClub is a comprehensive project management and collaboration platform designed specifically for creative professionals, such as designers, writers, and developers. It provides a suite of tools and features to streamline workflows, enhance communication, and facilitate collaboration among remote teams.
 
 ## Features
 
@@ -11,19 +11,11 @@ CreativHub is a comprehensive project management and collaboration platform desi
 - **Time Tracking and Reporting**: Track billable hours, monitor project budgets, and generate detailed reports for analysis.
 - **Client Portal**: Provide clients with secure access to project progress, feedback channels, and deliverables.
 
-## Technologies Used
 
 ## Technologies Used
 
 - **Frontend**: [React](https://reactjs.org/), [Redux](https://redux.js.org/), [React Router](https://reactrouter.com/)
 - **Backend**: [Node.js](https://nodejs.org/), [Express](https://expressjs.com/), [PostgreSQL](https://www.postgresql.org/)
 - **Authentication**: [JWT](https://jwt.io/) (JSON Web Tokens)
-- **File Storage**: [Amazon S3](https://aws.amazon.com/s3/) (for example)
+- **File Storage**: [Amazon S3](https://aws.amazon.com/s3/) 
 
-## Installation
-
-1. Clone the repository:
-
-```bash
-git clone https://github.com/yourusername/creativhub.git
-cd creativhub
