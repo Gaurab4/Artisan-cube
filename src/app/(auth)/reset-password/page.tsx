@@ -1,9 +1,7 @@
 "use client" 
 
-// components/Signup.tsx
 import Link from 'next/link';
 import styled from 'styled-components';
-
 
 const PageContainer = styled.div`
   display: flex;
@@ -12,10 +10,8 @@ const PageContainer = styled.div`
   height: 100vh;
 `;
 
-
 const FormContainer = styled.div`
-  width: 28%;
-  margin: 0 auto;
+  width: 400px;
   padding: 20px;
   background-color: #f3f4f6;
   border-radius: 8px;
@@ -55,11 +51,10 @@ const LinksContainer = styled.div`
   justify-content: space-between;
 `;
 
-export default function Signup() {
+export default function ResetPassword() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted');
-    // Add your form submission logic here
+
   };
 
   return (
@@ -70,22 +65,14 @@ export default function Signup() {
             <Label htmlFor="email">Email</Label>
             <Input type="email" id="email" name="email" />
           </FormGroup>
-          <FormGroup>
-            <Label htmlFor="password">Password</Label>
-            <Input type="password" id="password" name="password" />
-          </FormGroup>
-          <FormGroup>
-            <Label htmlFor="confirm-password">Confirm Password</Label>
-            <Input type="password" id="confirm-password" name="confirm-password" />
-          </FormGroup>
-          <Button type="submit">Signup</Button>
+          <Button type="submit">Reset Password</Button>
         </form>
         <LinksContainer>
           <Link href="/login">
             <Button>Login</Button>
           </Link>
-          <Link href="/reset-password">
-            <Button>Forgot Password?</Button>
+          <Link href="/signup">
+            <Button>Signup</Button>
           </Link>
         </LinksContainer>
       </FormContainer>
