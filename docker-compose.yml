@@ -1,0 +1,19 @@
+services:
+  # ...keep existing 'backend' service
+  backend:
+    container_name: backend
+    image: backend
+    build: 
+      context: ./backend
+      dockerfile: backend.dockerfile
+    ports:
+      - 4000:4000
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@artisan-club-postgres-1:5432/artisan_dev?schema=public
+  postgres:
+    image: postgres:15-alpine
+    ports:
+      - 5432:5432  # enables connecting locally via psql
+    environment:
+      POSTGRES_DB: artisan_dev
+      POSTGRES_HOST_AUTH_METHOD: trust
