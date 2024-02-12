@@ -8,7 +8,7 @@ interface Card {
 }
 
 const CardComponent: React.FC<{card:Card}> = ({card}) => {
-    console.log(card , "this is card");
+
     return(
         <div className='card'>
             <h1>{card.id}</h1>

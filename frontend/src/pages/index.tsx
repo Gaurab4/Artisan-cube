@@ -2,10 +2,11 @@ import Image from "next/image";
 import { Inter } from "next/font/google";
 import React,{useState ,useEffect} from "react";
 import axios from 'axios';
-import CardComponent from "@/components/CardComponent";
+import CountdownTimer from "@/components/home_page/countdown-timer";
+import LaunchPage from "@/components/home_page/launch_page";
 
 interface User {
-  id:number;
+    id:number;
     name:string;
     email:string;
     password:string;
@@ -37,21 +38,9 @@ export default function Home() {
 
     return (
       <main>
-        <div>
-          <div>
-            User management system 
-          </div>
-          {/* Display users */}
-          <div>
-            {users.map((user)=>(
-              <div key={user.id}>
-                      <CardComponent card={user}/>
-                      {/* <button onClick={() => addUser()}>Add User</button> */}
-              </div>
-            ))}
-          </div>
-
-
+        <div>    
+              <LaunchPage/>  
+              {/* <CountdownTimer/> */}
         </div>
       </main>
     )
