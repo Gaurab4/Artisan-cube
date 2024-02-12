@@ -34,12 +34,13 @@ const LaunchPage = () => {
                     ARTISAN CLUB
                 </div>
                 <WelcomeText>
-                  <p>🚀 Exciting News! Artisan Club is Coming Soon! 🚀</p>
-                  <p>We're thrilled to announce that Artisan Club, the ultimate platform for creative professionals, is coming soon!</p>
-                  <p>Get ready to unlock new possibilities, collaborate with fellow artisans, and showcase your creativity to the world. Whether you're a designer, writer, developer, or artist, Artisan Club is here to support and inspire you on your creative journey.</p>
-                  <p>Stay tuned for updates and be the first to experience Artisan Club when we launch! Sign up for our newsletter to receive exclusive sneak peeks, early access, and exciting updates.</p>
-                  <p>Let's create something extraordinary together!</p>
+                <p>🚀 Exciting News! Artisan Club is Coming Soon! 🚀</p>
+                <p>We&apos;re thrilled to announce that Artisan Club, the ultimate platform for creative professionals, is coming soon!</p>
+                <p>Get ready to unlock new possibilities, collaborate with fellow artisans, and showcase your creativity to the world. Whether you&apos;re a designer, writer, developer, or artist, Artisan Club is here to support and inspire you on your creative journey.</p>
+                <p>Stay tuned for updates and be the first to experience Artisan Club when we launch! Sign up for our newsletter to receive exclusive sneak peeks, early access, and exciting updates.</p>
+                <p>Let&apos;s create something extraordinary together!</p>
                 </WelcomeText>
+
             </div>
           </div>
           <div className="diff-item-2" style={{ marginLeft: '20px' }}> {/* Adjust the margin-left */}
