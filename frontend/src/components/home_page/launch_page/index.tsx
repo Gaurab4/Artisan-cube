@@ -18,11 +18,11 @@ const WelcomeText = styled.div`
 `;
 
 // Styled component for the diff container
+// Styled component for the diff container
 const DiffContainer = styled.div`
-
-  
- 
+  height: 100vh;
 `;
+
 
 const LaunchPage = () => {
   return (
