@@ -12,7 +12,6 @@ interface User {
     password:string;
 }
 
-
 export default function Home() {
   const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000';
   const [users , setUsers] = useState<User[]>([]);
