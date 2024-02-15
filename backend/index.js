@@ -1,4 +1,6 @@
 const express = require('express');
+const authRoutes = require('./auth/authRoutes');
+const todoRoutes = require('./todo/todoRoutes');
 const {PrismaClient} = require('@prisma/client');
 
 const prisma = new PrismaClient();
@@ -20,6 +22,12 @@ app.use((req, res ,next ) => {
 });
 
 
+// Routes
+app.use('/auth', authRoutes);
+app.use('/todo', todoRoutes);
+
+
+
 // testing api with error 
 app.get('/test' , (req,res) => {
 try {
@@ -28,6 +36,15 @@ try {
     res.status(500).json({message : 'there is an error connecting to the db'});
 }
 });
+
+
+app.get('/testing' , (req,res) => {
+    try{
+        res.status(200).json({message : 'api is working '});
+    }catch(error) {
+        res.status(500).json({message:'there is an error connecting to the db'});
+    }
+})
 
 // getting all the users 
 
