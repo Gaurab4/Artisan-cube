@@ -7,14 +7,17 @@ const MainSidebar = styled.div({});
 const Avatar = styled.div({});
 const MainText = styled.div({});
 const ButtonContainer = styled.div({});
+const ImageContainer = styled.div({});
+const AIContainer  = styled.div({});
+const FreqUsedContainer = styled.div({});
 
 const Sidebar = (props: Props) => {
   return (
-    <MainSidebar style={{ flex: 2.2 }}>
+    <MainSidebar style={{ flex: 2.2 , rowGap: 40  ,display:'grid'}}>
 
     {/* image ,  setting , logout block  */}
 
-      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+      <ImageContainer style={{ display: 'flex', justifyContent: 'space-between' }}>
         <div style={{ display: 'flex', columnGap: 12 }}>
           <Avatar>
             <div className="avatar">
@@ -41,20 +44,22 @@ const Sidebar = (props: Props) => {
             </svg>
           </div>
         </ButtonContainer>
-        
-      </div>
+      </ImageContainer>
 
     {/* AI Block */}
 
-      <div className='card h-40' style={{backgroundColor:'#E3E3E3', marginTop:'30px' , alignItems:'center'}}>
+      <AIContainer className='card h-40' style={{backgroundColor:'#E3E3E3',  alignItems:'center'}}>
         <div className="flex flex-col gap-4 w-80">
         <div className="skeleton h-40 w-full"></div>
-        <div className="skeleton h-4 w-28"></div>
-        <div className="skeleton h-4 w-full" ></div>
-        <div className="skeleton h-4 w-full"></div>
         </div>
-      </div>
+      </AIContainer>
 
+    {/* Freq Used or Most Used  */}
+
+      <FreqUsedContainer>
+
+
+      </FreqUsedContainer>
     
 
     </MainSidebar>
