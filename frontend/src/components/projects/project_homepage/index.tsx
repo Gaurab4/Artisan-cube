@@ -6,11 +6,11 @@ const Projects = () => {
   const [projectName, setProjectName] = useState('');
   const [projectDescription, setProjectDescription] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const modalRef = useRef(null);
+  const modalRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (modalRef.current && !modalRef.current.contains(event.target)) {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
         setShowModal(false);
       }
     };
@@ -22,7 +22,7 @@ const Projects = () => {
     };
   }, []);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e :  React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
     console.log(e , " this is event....")
