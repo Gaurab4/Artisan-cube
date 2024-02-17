@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -10,29 +7,43 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// User with id login system 
-
 model User {
-  id String @id @default(uuid())
-  name String
-  email String @unique
-  password String 
-  todos Todo[]
+  id       String    @id @default(uuid())
+  name     String
+  email    String    @unique
+  password String
+  todos    Todo[]
+  projects Project[] // Define the relation to projects
 }
 
 model Todo {
-  id        String   @id @default(uuid())
-  title     String
-  completed Boolean @default(false)
-  createdAt DateTime @default(now() )
-  updatedAt DateTime @updatedAt
-  addedBy User @relation(fields: [userId] ,references: [id])
-  userId String
+  id           String    @id @default(uuid())
+  title        String
+  completed    Boolean   @default(false)
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  addedBy      User?      @relation(fields: [userId], references: [id])
+  userId       String
+  todoList     TodoList? @relation(fields: [todoListId], references: [id])
+  todoListId   String?
 }
 
+model Project {
+  id          String      @id @default(uuid())
+  name        String
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  user        User        @relation(fields: [userId], references: [id]) // Define the relation to the User model
+  userId      String
+  todoLists   TodoList[]  // Define the relation to todo lists
+}
 
-// model AuthUser {
-//   id       Int    @id @default(autoincrement())
-//   email    String @unique
-//   password String
-// }
+model TodoList {
+  id          String    @id @default(uuid())
+  name        String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  project     Project   @relation(fields: [projectId], references: [id]) // Define the relation to the Project model
+  projectId   String
+  todos       Todo[]    // Define the relation to todos
+}

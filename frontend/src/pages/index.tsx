@@ -19,21 +19,21 @@ export default function Home() {
   
   // fetch the users 
 
-    useEffect(() => {
-      const fetchData = async () => {
-        try {
-          console.log('on trying...')
-          // const response =  await axios.get(`http://localhost:4000/users`);
-          const response = await axios.get(`${apiUrl}/users`);
-          setUsers(response.data);
-        } catch (error) {
+    // useEffect(() => {
+    //   const fetchData = async () => {
+    //     try {
+    //       console.log('on trying...')
+    //       // const response =  await axios.get(`http://localhost:4000/users`);
+    //       const response = await axios.get(`${apiUrl}/users`);
+    //       setUsers(response.data);
+    //     } catch (error) {
         
-          console.log('error fetchiing data ' , error);
-        }
-      };
+    //       console.log('error fetchiing data ' , error);
+    //     }
+    //   };
 
-      fetchData();
-    },[]);
+    //   fetchData();
+    // },[]);
 
     return (
       <main>

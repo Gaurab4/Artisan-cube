@@ -1,12 +1,27 @@
 import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
+import { useRouter } from 'next/router';
 
-const Projects = () => {
+type ProjectProps = {
+  userId: string | null;
+};
+
+type Project = {
+  id: string;
+  name: string;
+  description: string;
+};
+
+
+const Projects = ({ userId }: ProjectProps) => {
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000';
   const [showModal, setShowModal] = useState(false);
   const [projectName, setProjectName] = useState('');
   const [projectDescription, setProjectDescription] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
+  const [projects, setProjects] = useState<Project[]>([]);
+  const router = useRouter();
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -21,45 +36,51 @@ const Projects = () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
+  useEffect(() => {
+    // Fetch projects when the component mounts
+    fetchProjects();
+    
+  }, []);
 
-  const handleSubmit = async (e :  React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setIsLoading(true);
-    console.log(e , " this is event....")
+  const fetchProjects = async () => {
+    try {
+      const response = await axios.get(`${apiUrl}/project`);
+      console.log(response);
+      setProjects(response.data);
+    } catch (error) {
+      console.error('Error fetching projects:', error);
+    }
+  };
 
+  const handleSubmit = async (e :  React.FormEvent<HTMLFormElement>) => {  
+  e.preventDefault();
+  setIsLoading(true)
+  setTimeout(async () => {
     try {
       // Make API call to post the data
-
-        
-        window.location.href = `http://localhost:3000/boards/`;
+      const response = await axios.post(`${apiUrl}/project`, {
+        name: projectName,
+       userID: userId,
+      });
+      if (response.status === 201) {
       
-
-
-    //   const response = await axios.post('YOUR_API_ENDPOINT', {
-    //     projectName,
-    //     projectDescription
-    //   });
-
-    
-    //   if (response.status === 200) {
-    //     setTimeout(() => {
-    //       const projectNameSlug = projectName.toLowerCase().replace(/\s+/g, '-'); // Convert project name to URL slug
-    //       window.location.href = `http://localhost:3000/boards/${projectNameSlug}`;
-    //     }, 2000);
-    //   }
+      const projectNameSlug = projectName.toLowerCase().replace(/\s+/g, '-'); // Convert project name to URL slug
+          
+      router.push('/boards')
+        
+      }
 
     } catch (error) {
       console.error('Error occurred:', error);
     } finally {
       setIsLoading(false);
-      // Do not close the modal here, keep it open until the API call is complete
+
     }
+  },2000);
   };
 
-  console.log(isLoading, " this is loading....")
-
   return (
-    <div style={{ marginTop: 30 }}>
+    <div style={{  marginTop: 30, display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))', gap: '20px'  }}>
       {/* Card with click event to open modal */}
       <div
         className="card h-32 w-60 cursor-pointer"
@@ -68,6 +89,17 @@ const Projects = () => {
       >
         Add a new project
       </div>
+
+
+       {/* Display existing projects */}
+      {projects.map((project) => (
+        <div key={project.id} className="card h-32 w-60 cursor-pointer" style={{backgroundColor: '#E3E3E3', alignItems: 'center', display: 'flex', justifyContent: 'center' }}>
+          {project.name}
+          {/* Add more project details as needed */}
+        </div>
+      ))}
+
+      
 
       {/* Modal */}
       {showModal && (
@@ -119,6 +151,7 @@ const Projects = () => {
           </div>
         </div>
       )}
+
     </div>
   );
 };
