@@ -1,6 +1,7 @@
 const express = require('express');
 const authRoutes = require('./auth/authRoutes');
 const todoRoutes = require('./todo/todoRoutes');
+const todoListRoutes  = require('./todo/todolistRoutes');
 const projectRoutes = require('./project/projectRoutes');
 const {PrismaClient} = require('@prisma/client');
 
@@ -27,6 +28,7 @@ app.use((req, res ,next ) => {
 app.use('/auth', authRoutes);
 app.use('/todo', todoRoutes);
 app.use('',projectRoutes);
+app.use('' ,todoListRoutes)
 
 
 // testing api with error 

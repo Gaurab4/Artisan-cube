@@ -2,7 +2,7 @@ import React from 'react'
 
 const Board = () => {
   return (
-    <div>Board</div>
+    <div>Go to a valid board</div>
   )
 }
 

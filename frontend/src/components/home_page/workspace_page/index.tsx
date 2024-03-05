@@ -12,9 +12,8 @@ type Props = {}
 
 
 
-const MainWorkpage = styled.div({
-    
-});
+const MainWorkpage = styled.div({});
+
 
 const Workpage = (props: Props) => {
   const [userId, setUserId] = useState(null);
@@ -27,7 +26,6 @@ const Workpage = (props: Props) => {
     if (token) {
       // Decode the token to extract the userId
       const decodedToken: any = jwtDecode(token);
-
       const userId = decodedToken.userId;
       // Set the userId state
       setUserId(userId);
