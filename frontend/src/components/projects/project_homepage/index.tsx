@@ -22,7 +22,7 @@ const Projects = ({ userId }: ProjectProps) => {
   const [isLoading, setIsLoading] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
   const [projects, setProjects] = useState<Project[]>([]);
-  const [showDropdown, setShowDropdown] = useState(null);
+  const [showDropdown, setShowDropdown] = useState<null | string>( null);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const router = useRouter();
 
