@@ -14,7 +14,7 @@ const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000';
   const handleAddTodoList =  async() => {
     try {
         const response = await axios.post(`${apiUrl}/todolist`,{
-            name:todolistName,
+            name:'Demo',
             ProjectId:ProjectId,
         });
     } catch (error) {
