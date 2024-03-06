@@ -57,7 +57,7 @@ const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000';
       )}
 
       {/* Display todo lists in the sidebar */}
-      <div className="sidebar">
+      {/* <div className="sidebar">
         <h2>Sidebar</h2>
         <ul>
           {todoLists.map((todoList, index) => (
@@ -67,14 +67,15 @@ const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000';
       </div>
 
       {/* Display todo lists in the main content area */}
-      <div className="main-content">
+      {/* <div className="main-content">
         <h2>Main Content</h2>
         <ul>
           {todoLists.map((todoList, index) => (
             <li key={index}>{todoList.name}</li>
           ))}
         </ul>
-      </div>
+      </div>  */}
+
     </div>
   );
 };
