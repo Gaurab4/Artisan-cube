@@ -3,14 +3,14 @@ import axios from 'axios';
 import { useRouter } from 'next/router';
 import { createClient } from '@supabase/supabase-js';
 
-const supabaseUrl = process.env.SUPABASE_URL;
-const supabaseApiKey = process.env.SUPABASE_API_KEY;
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const supabaseApiKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
 // Check if Supabase URL and API key are available
-// if (!supabaseUrl || !supabaseApiKey) {
-//   console.error('Supabase URL or API key is missing.');
-//   process.exit(1);
-// }
+if (!supabaseUrl || !supabaseApiKey) {
+  console.error('Supabase URL or API key is missing.');
+  process.exit(1);
+}
 
 // Create Supabase client
 const supabase = createClient(supabaseUrl, supabaseApiKey);
