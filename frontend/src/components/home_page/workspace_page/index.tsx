@@ -16,7 +16,7 @@ const MainWorkpage = styled.div({});
 
 
 const Workpage = (props: Props) => {
-  const [userId, setUserId] = useState(null);
+  const [userId, setUserId] = useState('');
   const router = useRouter();
 
   useEffect(() => {

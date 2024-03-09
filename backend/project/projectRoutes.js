@@ -7,8 +7,6 @@ const prisma = new PrismaClient();
 // Create a new project
 router.post('/project', async (req, res) => {
     try {
-        console.log(req.body.userID)
-        
         const project = await prisma.project.create({
             data: {
                 name: req.body.name,
@@ -20,22 +18,20 @@ router.post('/project', async (req, res) => {
         res.status(500).json({ message: error.message })
     }
 })
-
-// Get projects for the current user
 router.get('/project', async (req, res) => {
     try {
-        // Get projects associated with the current user
-        const projects = await prisma.project.findMany({
-            where: {
-                userId: req.body.userID
-            }
-        });
-        res.status(200).json(projects);
+       
+      const userId = req.query.userId;
+      const projects = await prisma.project.findMany({
+        where: {
+          userId: userId,
+        },
+      });
+      res.status(200).json(projects);
     } catch (error) {
-        res.status(500).json({ message: error.message })
+      res.status(500).json({ message: error.message });
     }
-})
-
+  }); 
 // Update a project
 router.put('/project/:id', async (req, res) => {
     try {
