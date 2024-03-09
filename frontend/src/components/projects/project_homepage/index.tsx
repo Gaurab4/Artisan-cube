@@ -1,6 +1,19 @@
 import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/router';
+import { createClient } from '@supabase/supabase-js';
+
+const supabaseUrl = process.env.SUPABASE_URL;
+const supabaseApiKey = process.env.SUPABASE_API_KEY;
+
+// Check if Supabase URL and API key are available
+if (!supabaseUrl || !supabaseApiKey) {
+  console.error('Supabase URL or API key is missing.');
+  process.exit(1);
+}
+
+// Create Supabase client
+const supabase = createClient(supabaseUrl, supabaseApiKey);
 
 type ProjectProps = {
   userId: string | null;

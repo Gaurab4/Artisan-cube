@@ -7,7 +7,7 @@ const prisma = new PrismaClient();
 // Create a new project
 router.post('/project', async (req, res) => {
     try {
-    
+        console.log(req.body.userID)
         
         const project = await prisma.project.create({
             data: {
