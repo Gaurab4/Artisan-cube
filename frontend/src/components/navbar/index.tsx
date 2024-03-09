@@ -30,7 +30,7 @@ const Navbar: React.FC = () => {
       <div className="navbar-start">
         {/* WORKBOOK NAME HERE  */}
 
-        <a className="btn btn-ghost text-4xl">Artisan Club</a>
+        <a className="btn btn-ghost text-4xl">Artisan</a>
       </div>
       <div className="navbar-end">
         <button className="btn btn-ghost btn-circle">

@@ -15,7 +15,6 @@ const Login = () => {
 
   const router = useRouter();
 
-
     // Check if token exists in cookies
 
   useEffect(() => {
