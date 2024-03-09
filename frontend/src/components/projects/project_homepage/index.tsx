@@ -16,7 +16,7 @@ if (!supabaseUrl || !supabaseApiKey) {
 const supabase = createClient(supabaseUrl, supabaseApiKey);
 
 type ProjectProps = {
-  userId: string | null;
+  userId: string ;
 };
 
 type Project = {
@@ -29,37 +29,43 @@ const Projects = ({ userId }: ProjectProps) => {
   const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000';
   const [showModal, setShowModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
-  const [showWarningModal, setShowWarningModal] = useState(false); // New state for warning modal
+  const [showWarningModal, setShowWarningModal] = useState(false);
   const [projectName, setProjectName] = useState('');
   const [projectDescription, setProjectDescription] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
   const [projects, setProjects] = useState<Project[]>([]);
-  const [showDropdown, setShowDropdown] = useState<null | string>( null);
+  const [showDropdown, setShowDropdown] = useState<null | string>(null);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const router = useRouter();
 
   useEffect(() => {
     // Fetch projects when the component mounts
     fetchProjects();
-  }, []);
+  }, [userId]);
 
   const fetchProjects = async () => {
     try {
-      const response = await axios.get(`${apiUrl}/project`);
-      setProjects(response.data);
+      if (userId) { 
+        const response = await axios.get(`${apiUrl}/project`, {
+          params: {
+            userId: userId,
+          },
+        });
+        setProjects(response.data);
+      }
     } catch (error) {
       console.error('Error fetching projects:', error);
     }
   };
 
   const handleOptionsClick = (project: Project) => {
-    setShowDropdown(project?.id);
+    setShowDropdown(showDropdown === project.id ? null : project.id);
     setSelectedProject(project);
   };
   useEffect(() => {
     if (selectedProject) {
-      setProjectName(selectedProject.name); 
+      setProjectName(selectedProject.name);
     }
   }, [selectedProject]);
 
@@ -68,13 +74,12 @@ const Projects = ({ userId }: ProjectProps) => {
     setIsLoading(true);
     setShowDropdown(null);
     try {
-    
       const response = await axios.put(`${apiUrl}/project/${selectedProject?.id}`, {
         name: projectName,
       });
       setShowEditModal(false);
-      setProjects(prevProjects =>
-        prevProjects.map(proj =>
+      setProjects((prevProjects) =>
+        prevProjects.map((proj) =>
           proj.id === selectedProject?.id ? { ...proj, name: projectName } : proj
         )
       );
@@ -89,13 +94,12 @@ const Projects = ({ userId }: ProjectProps) => {
     try {
       const response = await axios.delete(`${apiUrl}/project/${selectedProject?.id}`);
       setShowDropdown(null);
-      setProjects(prevProjects => prevProjects.filter(proj => proj.id !== selectedProject?.id));
+      setProjects((prevProjects) => prevProjects.filter((proj) => proj.id !== selectedProject?.id));
     } catch (error) {
       console.error('Error deleting project:', error);
     }
     setShowWarningModal(false); // Close warning modal after deletion
   };
-
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
@@ -119,8 +123,6 @@ const Projects = ({ userId }: ProjectProps) => {
     const projectNameWithoutSpaces = encodeURIComponent(project.name.replace(/\s/g, ''));
     router.push(`/boards/${projectNameWithoutSpaces}`);
   };
-  
-  
 
   return (
     <div style={{ marginTop: 30, display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))', gap: '20px' }}>
@@ -133,7 +135,7 @@ const Projects = ({ userId }: ProjectProps) => {
       </div>
 
       {projects.map((project) => (
-        <div key={project.id} className="relative card h-32 w-60" onClick={() => handleProjectClick(project)} style={{ backgroundColor: '#E3E3E3', alignItems: 'center', display: 'flex', justifyContent: 'center' }}>
+        <div key={project.id} onClick={() => handleProjectClick(project)} className="relative card h-32 w-60 cursor-pointer " style={{ backgroundColor: '#E3E3E3', alignItems: 'center', display: 'flex', justifyContent: 'center' }}>
           <div>{project.name}</div>
           <div className="absolute top-0 right-0 p-2 cursor-pointer" onClick={() => handleOptionsClick(project)}>
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
