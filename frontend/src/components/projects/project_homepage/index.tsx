@@ -7,10 +7,10 @@ const supabaseUrl = process.env.SUPABASE_URL;
 const supabaseApiKey = process.env.SUPABASE_API_KEY;
 
 // Check if Supabase URL and API key are available
-if (!supabaseUrl || !supabaseApiKey) {
-  console.error('Supabase URL or API key is missing.');
-  process.exit(1);
-}
+// if (!supabaseUrl || !supabaseApiKey) {
+//   console.error('Supabase URL or API key is missing.');
+//   process.exit(1);
+// }
 
 // Create Supabase client
 const supabase = createClient(supabaseUrl, supabaseApiKey);
