@@ -19,17 +19,17 @@ router.get('/todolist', async (req, res) => {
 
 // Add a new todo
 router.post('/todolist', async (req, res) => {
+  
     const { userId, projectId, task ,name} = req.body;
+    console.log("todo... ", name , projectId);
     try {
-        const newTodo = await prisma.todoList.create({
+        const newTodoList = await prisma.todoList.create({
             data: {
-                name,
-                project: {
-                    connect: { projectId: projectId },
-                },
+                name: name,
+                projectId: projectId,   
             },
         });
-        res.status(201).json(newTodo);
+        res.status(201).json(newTodoList);
     } catch (error) {
         res.status(500).json({ message: error.message });
     }

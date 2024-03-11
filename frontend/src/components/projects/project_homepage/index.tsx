@@ -119,9 +119,16 @@ const Projects = ({ userId }: ProjectProps) => {
       }
     }, 2000);
   };
+  const navigateToProjectBoard = (projectId: string, projectNameWithoutSpaces: string) => {
+    router.push(`/[projectname]?id=${projectId}`, `/${projectNameWithoutSpaces}`);
+  };
+
   const handleProjectClick = (project: Project) => {
+    console.log(project, " this is outside")
     const projectNameWithoutSpaces = encodeURIComponent(project.name.replace(/\s/g, ''));
-    router.push(`/boards/${projectNameWithoutSpaces}`);
+    // router.push(`/boards/${projectNameWithoutSpaces}?projectId=${project.id}`);
+
+    router.push({pathname:`/boards/${projectNameWithoutSpaces}` , query:{data:JSON.stringify(project) }} );
   };
 
   return (
