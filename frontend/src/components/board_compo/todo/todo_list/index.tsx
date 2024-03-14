@@ -50,16 +50,21 @@ const TodosList = (props: Props) => {
 
   const fetchTodo = async () => {
     try{
-      const response = await axios.get(`${apiUrl}/todo/todos`)
+      if(ListId){
+        const response = await axios.get(`${apiUrl}/todo/todos`,{
+          params:{
+            todoListId:ListId,
+          }
+        });
+        setTodosList(response.data);
+      }
+     
       // console.log(response.data)
-      setTodosList(response.data);
+     
     }catch (error){
       console.error("Error occurred:", error);
-
     }
-
   }
-
 
   useEffect(()=>{
     fetchTodo();

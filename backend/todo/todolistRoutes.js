@@ -9,7 +9,13 @@ const prisma = new PrismaClient();
 // Get all todos
 router.get('/todolist', async (req, res) => {
     try {
-        const todos = await prisma.todoList.findMany();
+        const projectId = req.query.projectId;
+       
+        const todos = await prisma.todoList.findMany({
+            where: {
+                projectId: projectId,
+              },
+        });
         res.status(200).json(todos);
         
     } catch (error) {
