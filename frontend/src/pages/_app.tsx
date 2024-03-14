@@ -20,7 +20,7 @@ export default function App({ Component, pageProps }: AppProps) {
       // Set authentication status based on the presence of the token
       console.log("not allowed");
     }
-  }, []);
+  }, [allowedRoutes]);
 
   return <Component {...pageProps} />;
 }

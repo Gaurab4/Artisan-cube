@@ -30,8 +30,14 @@ const BoardTodoList = (props: Props) => {
 
   const fetchTodoList = async () => {
     try {
-      const response = await axios.get(`${apiUrl}/todolist`);
-      setTodoLists(response.data);
+      if(ProjectDetails.id){
+        const response = await axios.get(`${apiUrl}/todolist`,{
+          params:{
+            projectId:ProjectDetails?.id,
+          }
+        });
+        setTodoLists(response.data);
+      }
     } catch (error) {
       console.error("Error occurred:", error);
     }
