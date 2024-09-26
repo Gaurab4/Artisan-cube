@@ -23,7 +23,7 @@ router.get('/todolist', async (req, res) => {
     }
 });
 
-// Add a new todo
+
 router.post('/todolist', async (req, res) => {
   
     const { userId, projectId, task ,name} = req.body;
